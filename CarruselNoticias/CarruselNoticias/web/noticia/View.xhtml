@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/newsTemplate.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewNoticiaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <p:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewNoticiaLabel_id}"/>
+                    <h:outputText value="#{noticiaController.selected.id}" title="#{bundle.ViewNoticiaTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewNoticiaLabel_titulo}"/>
+                    <h:outputText value="#{noticiaController.selected.titulo}" title="#{bundle.ViewNoticiaTitle_titulo}"/>
+                    <h:outputText value="#{bundle.ViewNoticiaLabel_descripcion}"/>
+                    <h:outputText value="#{noticiaController.selected.descripcion}" title="#{bundle.ViewNoticiaTitle_descripcion}"/>
+                    <h:outputText value="#{bundle.ViewNoticiaLabel_urlimagen}"/>
+                    <h:outputText value="#{noticiaController.selected.urlimagen}" title="#{bundle.ViewNoticiaTitle_urlimagen}"/>
+                    <h:outputText value="#{bundle.ViewNoticiaLabel_urlvideo}"/>
+                    <h:outputText value="#{noticiaController.selected.urlvideo}" title="#{bundle.ViewNoticiaTitle_urlvideo}"/>
+                </p:panelGrid>
+                <br />
+                <h:commandLink action="#{noticiaController.destroyAndView}" value="#{bundle.ViewNoticiaDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewNoticiaEditLink}"/>
+                <br />
+                <h:commandLink action="#{noticiaController.prepareCreate}" value="#{bundle.ViewNoticiaCreateLink}" />
+                <br />
+                <h:commandLink action="#{noticiaController.prepareList}" value="#{bundle.ViewNoticiaShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewNoticiaIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

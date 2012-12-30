@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+    
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="css/style.css"/>
+        <title>Facelets Template</title>
+    </h:head>
+    
+    <h:body>
+        
+        <div id="top">
+
+            <ui:insert name="top">
+                <div class="sheet">
+                <div class="sheet-tl"></div>
+            <div class="sheet-tr"></div>
+            <div class="sheet-bl"></div>
+            <div class="sheet-br"></div>
+            <div class="sheet-tc"></div>
+            <div class="sheet-bc"></div>
+            <div class="sheet-cl"></div>
+            <div class="sheet-cr"></div>
+            <div class="sheet-cc"></div>
+            <div class="sheet-body">
+                <div class="header">
+                    <div class="header-center">
+                        <div class="header-png"></div>
+                        <div class="header-jpeg"></div>
+                    </div>
+                    <div class="logo">
+                     <h1 id="name-text" class="logo-name"><a href="#">Carrusel de Noticias</a></h1>
+                     <h2 id="slogan-text" class="logo-text">Enfasis IV</h2>
+                    </div>
+                </div>
+                <div class="nav">
+                	<div class="l"></div>
+                </div>
+				</div></div>
+            </ui:insert>
+        </div>
+        
+        <div id="content" class="center_content">
+            
+            <div class="sheet">
+            <div class="sheet-body">
+                <div class="content-layout">
+                    <div class="content-layout-row">
+
+                        <div class="layout-cell content">
+                          <div class="post">
+                              <div class="post-body">
+
+                          <div class="post-inner article">
+                                          <div class="postmetadataheader">
+                                              <h2 class="postheader"><img src="/CarruselNoticias/faces/resources/images/postheadericon.png" width="26" height="26" alt="" /><a href="#" title="Permanent Link to this Post"><ui:insert name="title"> Titulo </ui:insert></a></h2>
+                                          </div>
+                              <center>
+                                  <br/>
+            <ui:insert name="content">Content</ui:insert>
+
+                </center>
+            </div>
+
+                          		<div class="cleared"></div>
+                              </div>
+                          </div>
+                          <div class="cleared"></div>
+                        </div>
+                    </div>
+                </div>
+            </div></div>
+        </div>
+        
+        <div id="bottom">
+            <ui:insert name="bottom">
+                <div class="sheet">
+                <div class="cleared"></div>
+                <div class="footer">
+                    <div class="footer-t"></div>
+                    <div class="footer-l"></div>
+                    <div class="footer-b"></div>
+                    <div class="footer-r"></div>
+                    <div class="footer-body">
+                         <a href="http://www.eltiempo.com/servicios/rss_2010/" class="rss-tag-icon" title="RSS"></a>
+                        <div class="footer-text">
+                            <br /><br /><p>Copyright © 2012. All Rights Reserved. ENFASIS IV 2012 UNICAUCA</p>
+                        </div>
+                		<div class="cleared"></div>
+                    </div>
+                </div>
+        		<div class="cleared"></div>
+                        <div class="cleared"></div>
+        <p class="page-footer"><a href="http://www.unicauca.edu.co" title="plantillas web gratis">Johanna Hurtado -  Juan Carlos Majin</a></p>
+        <br></br>
+        </div>
+            </ui:insert>
+        </div>
+
+    </h:body>
+    
+</html>

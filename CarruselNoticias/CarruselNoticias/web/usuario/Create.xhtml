@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/newsTemplate.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateUsuarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <p:panelGrid columns="2">
+                    
+                    <p:outputLabel value="#{bundle.CreateUsuarioLabel_nombresadmin}" for="nombresadmin" />
+                    <p:inputText id="nombresadmin" value="#{usuarioController.selected.nombresadmin}" title="#{bundle.CreateUsuarioTitle_nombresadmin}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_nombresadmin}"/>
+                    <p:outputLabel value="#{bundle.CreateUsuarioLabel_apellidosadmin}" for="apellidosadmin" />
+                    <p:inputText id="apellidosadmin" value="#{usuarioController.selected.apellidosadmin}" title="#{bundle.CreateUsuarioTitle_apellidosadmin}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_apellidosadmin}"/>
+                    <p:outputLabel value="#{bundle.CreateUsuarioLabel_cedulaadministrador}" for="cedulaadministrador" />
+                    <p:inputText id="cedulaadministrador" value="#{usuarioController.selected.cedulaadministrador}" title="#{bundle.CreateUsuarioTitle_cedulaadministrador}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_cedulaadministrador}"/>
+                    <p:outputLabel value="#{bundle.CreateUsuarioLabel_direccionadministrador}" for="direccionadministrador" />
+                    <p:inputText id="direccionadministrador" value="#{usuarioController.selected.direccionadministrador}" title="#{bundle.CreateUsuarioTitle_direccionadministrador}" />
+                    <p:outputLabel value="#{bundle.CreateUsuarioLabel_telefonoadministrador}" for="telefonoadministrador" />
+                    <p:inputText id="telefonoadministrador" value="#{usuarioController.selected.telefonoadministrador}" title="#{bundle.CreateUsuarioTitle_telefonoadministrador}" />
+                    <p:outputLabel value="#{bundle.CreateUsuarioLabel_estadocodigo}" for="estadocodigo" />
+                    <p:inputText id="estadocodigo" value="#{usuarioController.selected.estadocodigo}" title="#{bundle.CreateUsuarioTitle_estadocodigo}" required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_estadocodigo}"/>
+                </p:panelGrid>
+                <br />
+                <h:commandLink action="#{usuarioController.create}" value="#{bundle.CreateUsuarioSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{usuarioController.prepareList}" value="#{bundle.CreateUsuarioShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateUsuarioIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
