@@ -1,0 +1,4 @@
+#! /bin/sh
+DtPlay /home/enfasis/Proyectos/CarruselNoticias/fifo2.ts -t 110 -mt OFDM -mC QAM16 -mG 1/4 -mc 2/3 -mf 578 &
+tsstamp /home/enfasis/Proyectos/CarruselNoticias/fifo1.ts 13271000 > /home/enfasis/Proyectos/CarruselNoticias/fifo2.ts &
+tscbrmuxer b:269100 /home/enfasis/Proyectos/CarruselNoticias/video4.ts b:188000 /home/enfasis/Proyectos/CarruselNoticias/audio4.ts b:3008 /home/enfasis/Proyectos/CarruselNoticias/mptspat.ts b:3008 /home/enfasis/Proyectos/CarruselNoticias/mptspmt1.ts b:1500 /home/enfasis/Proyectos/CarruselNoticias/mptssdt.ts b:1400 /home/enfasis/Proyectos/CarruselNoticias/mptsnit.ts b:2000 /home/enfasis/Proyectos/CarruselNoticias/firstait.ts b:1000000 /home/enfasis/Proyectos/CarruselNoticias/ocdir.ts o:13271000 /home/enfasis/Proyectos/CarruselNoticias/null.ts> fifo1.ts

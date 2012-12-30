@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/newsTemplate.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListFuenterssTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListFuenterssEmpty}" rendered="#{fuenterssController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{fuenterssController.items.rowCount > 0}">
+                
+                <p:dataTable value="#{fuenterssController.items}" var="item"
+                             paginator="true" rows="10"
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 rowsPerPageTemplate="5,10,15">
+        <f:facet name="header">
+            Paginacion
+        </f:facet> 
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListFuenterssTitle_idrss}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idrss}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListFuenterssTitle_titulo}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.titulo}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListFuenterssTitle_categoria}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.categoria}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListFuenterssTitle_url}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.url}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <h:commandLink action="#{fuenterssController.prepareView}" value="#{bundle.ListFuenterssViewLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{fuenterssController.prepareEdit}" value="#{bundle.ListFuenterssEditLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{fuenterssController.destroy}" value="#{bundle.ListFuenterssDestroyLink}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:panelGroup>
+            <br />
+            <h:commandLink action="#{fuenterssController.prepareCreate}" value="#{bundle.ListFuenterssCreateLink}"/>
+            <br />
+            <br />
+            <h:commandLink value="#{bundle.ListFuenterssIndexLink}" action="/index" immediate="true" />
+        </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

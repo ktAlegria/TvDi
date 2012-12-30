@@ -1,0 +1,5 @@
+#! /bin/sh
+
+
+/home/enfasis/Installer/LinuxSDK/Dta1xx/Dta1xxInit start
+

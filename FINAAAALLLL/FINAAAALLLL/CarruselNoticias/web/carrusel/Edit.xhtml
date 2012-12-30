@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCarruselTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCarruselLabel_idcarrusel}" for="idcarrusel" />
+                    <h:inputText id="idcarrusel" value="#{carruselController.selected.idcarrusel}" title="#{bundle.EditCarruselTitle_idcarrusel}" required="true" requiredMessage="#{bundle.EditCarruselRequiredMessage_idcarrusel}"/>
+                    <h:outputLabel value="#{bundle.EditCarruselLabel_posicion}" for="posicion" />
+                    <h:inputText id="posicion" value="#{carruselController.selected.posicion}" title="#{bundle.EditCarruselTitle_posicion}" required="true" requiredMessage="#{bundle.EditCarruselRequiredMessage_posicion}"/>
+                    <h:outputLabel value="#{bundle.EditCarruselLabel_brvideo}" for="brvideo" />
+                    <h:inputText id="brvideo" value="#{carruselController.selected.brvideo}" title="#{bundle.EditCarruselTitle_brvideo}" />
+                    <h:outputLabel value="#{bundle.EditCarruselLabel_braudio}" for="braudio" />
+                    <h:inputText id="braudio" value="#{carruselController.selected.braudio}" title="#{bundle.EditCarruselTitle_braudio}" />
+                    <h:outputLabel value="#{bundle.EditCarruselLabel_nombrevideo}" for="nombrevideo" />
+                    <h:inputText id="nombrevideo" value="#{carruselController.selected.nombrevideo}" title="#{bundle.EditCarruselTitle_nombrevideo}" />
+                    <h:outputLabel value="#{bundle.EditCarruselLabel_nombreaudio}" for="nombreaudio" />
+                    <h:inputText id="nombreaudio" value="#{carruselController.selected.nombreaudio}" title="#{bundle.EditCarruselTitle_nombreaudio}" />
+                    <h:outputLabel value="#{bundle.EditCarruselLabel_noticia}" for="noticia" />
+                    <h:selectOneMenu id="noticia" value="#{carruselController.selected.noticia}" title="#{bundle.EditCarruselTitle_noticia}" required="true" requiredMessage="#{bundle.EditCarruselRequiredMessage_noticia}">
+                        <f:selectItems value="#{noticiaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{carruselController.update}" value="#{bundle.EditCarruselSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditCarruselViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{carruselController.prepareList}" value="#{bundle.EditCarruselShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditCarruselIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,35 @@
+
+sudo su
+
+cd /home/enfasis/Installer/LinuxSDK/Dta1xx
+
+./Dta1xxInit start
+
+
+otro terminal:
+
+sudo su
+
+cd /home/enfasis/Proyectos/CarruselNoticias/
+
+rm ait.sec fifo1.ts mptspat.ts pmt1.sec fifo2.ts mptspmt1.ts sdt.sec firstait.ts mptssdt.ts ocdir.ts mptsnit.ts nit.sec pat.sec 
+
+./carrusel.py
+
+mkfifo fifo1.ts fifo2.ts
+
+oc-update.sh ocdir 0xB 5 2003 1 1 0 0 4066 0 2
+
+
+tscbrmuxer b:233220 video.ts b:188000 audio.ts b:3008 mptspat.ts b:3008 mptspmt1.ts b:1500 mptssdt.ts b:1400 mptsnit.ts b:2000 firstait.ts b:1000000 ocdir.ts b:11838864 null.ts> fifo1.ts & tsstamp fifo1.ts 13271000 > fifo2.ts & DtPlay fifo2.ts -t 110 -mt OFDM -mC QAM16 -mG 1/4 -mc 2/3 -mf 578
+
+java -jar "PruebaComandos.jar" 
+
+
+ps -a
+
+pgrep -u root tscbrmuxer
+respuesta :20565
+
+kill -9 20565
+

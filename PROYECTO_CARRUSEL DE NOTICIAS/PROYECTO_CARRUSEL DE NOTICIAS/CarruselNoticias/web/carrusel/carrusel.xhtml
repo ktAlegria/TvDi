@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../newsTemplate.xhtml">
+
+
+            <ui:define name="title">
+                Lista Carrusel
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="form">
+                    <p:growl id="growl" showDetail="true"/>
+                    <p:carousel autoPlayInterval="10000" rendered="true" id="carousel"  value="#{carruselController.listCarrusel}" itemStyle="width:300px;height:240px" circular="true" var="news" headerText="Carrusel de Noticias">
+                        <p:column id="columna">
+                            <p:graphicImage style="width: 180px; height: 150px" id="image" value="./../resources/images/news.jpg"/>
+
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputText rendered="true" id="model" value="#{news.noticia.titulo}" />
+                            </h:panelGrid>
+                            <p:panelGrid columns="3">
+                                <p:commandLink actionListener="newsDialog.show()" rendered="true" id="view" update=":form:newsDetail" oncomplete="newsDialog.show()" title="Ver Descripcion">
+                                    <p:graphicImage value="./../resources/images/search.png"/>
+                                    <f:setPropertyActionListener value="#{news}"
+                                                                 target="#{carruselController.carruselSelected}" />
+                                </p:commandLink>
+                                <p:commandLink actionListener="newsDialog2.show()" rendered="true" id="view2" update=":form:newsDetail2" oncomplete="newsDialog2.show()" title="Eliminar">
+                                    <p:graphicImage value="./../resources/images/delete.png" width="20px" height="30px"/>
+                                    <f:setPropertyActionListener value="#{news}"
+                                                                 target="#{carruselController.carruselSelected}" />
+                                </p:commandLink>
+                                <p:commandLink actionListener="newsDialog3.show()" rendered="true" id="view3" update=":form:newsDetail3" oncomplete="newsDialog3.show()" title="Ver Video">
+                                    <p:graphicImage value="./../resources/images/play.png" width="20px" height="30px"/>
+                                    <f:setPropertyActionListener value="#{news}"
+                                                                 target="#{carruselController.carruselSelected}" />
+                                </p:commandLink>
+                            </p:panelGrid>
+                        </p:column>
+                    </p:carousel>
+
+                    <p:dialog id="newsView" header="Detalles de Noticia" showEffect="fade" hideEffect="fade" width="500" widgetVar="newsDialog" dynamic="true">
+
+                        <p:outputPanel id="newsDetail" style="text-align:center;" layout="block">
+
+
+                            <p:graphicImage id="newsImage" value="./../resources/images/news.jpg"/>
+
+                            <h:panelGrid  columns="2" cellpadding="5">
+
+                                <h:outputLabel for="Titulo" value="Titulo: " />
+                                <h:outputText rendered="true" id="Titulo"
+                                              value="#{carruselController.carruselSelected.noticia.titulo}" />
+
+                                <h:outputLabel for="Descripcion" value="Descripcion: " />
+                                <h:outputText rendered="true" id="Descripcion"
+                                              value="#{carruselController.carruselSelected.noticia.descripcion}" />
+
+                                <h:outputLabel for="Posicion" value="Posicion: " />
+                                <h:inputText rendered="true" id="Posicion" value="#{carruselController.carruselSelected.posicion}"/>
+
+                                <p:commandButton value="Cambiar Posicion" rendered="true" id="loginButton" update=":form"
+                                                 actionListener="#{carruselController.updatePosition}"/>
+
+                            </h:panelGrid>
+
+
+                        </p:outputPanel>
+                    </p:dialog>
+                    <p:dialog id="newsView2" header="Confirma sacar del Carrusel esta Noticia" showEffect="fade" hideEffect="fade" width="500" widgetVar="newsDialog2" dynamic="true">
+
+                        <p:outputPanel id="newsDetail2" style="text-align:center;" layout="block">
+
+
+                            <h:panelGrid  columns="2" cellpadding="5">
+
+                                <h:outputLabel for="Titulo2" value="Titulo: " />
+                                <h:outputText rendered="true" id="Titulo2"
+                                              value="#{carruselController.carruselSelected.noticia.titulo}" />
+
+                                <h:outputLabel for="Descripcion2" value="Descripcion: " />
+                                <h:outputText rendered="true" id="Descripcion2"
+                                              value="#{carruselController.carruselSelected.noticia.descripcion}" />
+
+                                <h:outputLabel for="Posicion2" value="Posicion: " />
+                                <h:outputText rendered="true" id="Posicion2" value="#{carruselController.carruselSelected.posicion}"/>
+
+                                <p:commandButton value="Confirmar" rendered="true" id="loginButton2" update=":form"
+                                                 actionListener="#{carruselController.removeNoticia}"/>
+
+                            </h:panelGrid>
+
+
+
+                        </p:outputPanel>
+
+                    </p:dialog>
+                    <p:dialog id="newsView3" header="Confirma sacar del Carrusel esta Noticia" showEffect="fade" hideEffect="fade" height="420" width="600" widgetVar="newsDialog3" dynamic="true">
+
+                        <p:outputPanel id="newsDetail3" style="text-align:center;" layout="block">
+
+
+                            <h:panelGrid  columns="3" cellpadding="5">
+                                <embed type="application/x-mplayer2" pluginspage="http://www.microsoft.com/windows/mediaplayer/download/default.asp" border="0"
+                                       src="#{carruselController.carruselSelected.noticia.urlvideo}" width="500px" height="400px" />
+                            </h:panelGrid>
+
+
+                        </p:outputPanel>
+
+                    </p:dialog>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

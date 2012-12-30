@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCarruselTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCarruselLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{carruselController.selected.id}" title="#{bundle.CreateCarruselTitle_id}" required="true" requiredMessage="#{bundle.CreateCarruselRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateCarruselLabel_posicion}" for="posicion" />
+                    <h:inputText id="posicion" value="#{carruselController.selected.posicion}" title="#{bundle.CreateCarruselTitle_posicion}" required="true" requiredMessage="#{bundle.CreateCarruselRequiredMessage_posicion}"/>
+                    <h:outputLabel value="#{bundle.CreateCarruselLabel_noticia}" for="noticia" />
+                    <h:selectOneMenu id="noticia" value="#{carruselController.selected.noticia}" title="#{bundle.CreateCarruselTitle_noticia}" required="true" requiredMessage="#{bundle.CreateCarruselRequiredMessage_noticia}">
+                        <f:selectItems value="#{noticiaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{carruselController.create}" value="#{bundle.CreateCarruselSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{carruselController.prepareList}" value="#{bundle.CreateCarruselShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateCarruselIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

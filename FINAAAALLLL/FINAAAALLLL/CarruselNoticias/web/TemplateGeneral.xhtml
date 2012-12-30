@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:head>
+        <title>Sistema de Control y Monitoreo Vehicular</title>
+        <meta charset="UTF-8"/>
+
+        
+        
+        
+    </h:head>
+
+    <h:body >
+
+        <div id="top"  style="background-image: url(RES/cabecera.png); min-height: 240px; max-height: 240px; background-color: transparent; background-repeat: no-repeat; background-position: center" align="center" >
+            
+            
+        </div>
+        <div>
+            <div id="left" style="min-width: 200; min-height: 700" >
+                <ui:insert name="left"></ui:insert>
+            </div>
+            <div>
+                <div id="right" style="min-width: 150; min-height: 700" >
+                    <ui:insert name="right" ></ui:insert>
+                </div>
+                <div id="content" class="right_content">
+                    <ui:insert name="content">Content</ui:insert>
+                </div>
+            </div>
+        </div>
+        <div id="bottom" style="background-image: url(RES/pie.png); min-height: 126px; max-height: 126px; background-color: transparent; background-repeat: no-repeat; background-position: center" align="center">
+            
+            
+        </div>
+
+    </h:body>
+
+</html>

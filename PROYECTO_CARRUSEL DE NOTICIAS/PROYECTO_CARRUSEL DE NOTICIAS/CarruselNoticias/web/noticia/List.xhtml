@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/newsTemplate.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListNoticiaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:form styleClass="jsfcrud_list_form" id="form">
+                <p:growl id="growl" showDetail="true"/>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListNoticiaEmpty}" rendered="#{noticiaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{noticiaController.items.rowCount > 0}">
+
+                    <p:dataTable value="#{noticiaController.items}" var="item"
+                                 paginator="true" rows="10"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNoticiaTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNoticiaTitle_titulo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.titulo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNoticiaTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNoticiaTitle_urlimagen}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.urlimagen}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNoticiaTitle_urlvideo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.urlvideo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNoticiaTitle_fechapublicacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechapublicacion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNoticiaTitle_duracion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.duracion}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNoticiaTitle_version}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.version}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{noticiaController.prepareView}" value="#{bundle.ListNoticiaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{noticiaController.prepareEdit}" value="#{bundle.ListNoticiaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{noticiaController.destroy}" value="#{bundle.ListNoticiaDestroyLink}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="CARRUSEL"/>
+                            </f:facet>
+                            <p:commandLink actionListener="newsDialog.show()" rendered="true" id="view" update=":form:newsDetail" oncomplete="newsDialog.show()" title="Cargar al Carrusel">
+                                <p:graphicImage value="./../resources/images/load_1.jpg"/>
+                                <f:setPropertyActionListener value="#{item}"
+                                                             target="#{noticiaController.selectNoticia}" />
+                            </p:commandLink>
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGroup>
+                <p:dialog id="newsView" header="Ingresar Posicion" showEffect="fade" hideEffect="fade" width="500" widgetVar="newsDialog" dynamic="true">
+
+                    <p:outputPanel id="newsDetail" style="text-align:center;" layout="block">
+
+                        <h:panelGrid  columns="2">
+
+                            <h:outputLabel for="Posicion" value="Ingrese posicion de la noticia en el carrusel
+                                           entre 1 y #{noticiaController.count}. " />
+                            <h:inputText rendered="true" id="Posicion" value="#{noticiaController.count}"/>
+
+
+                            <p:commandButton value="Confirmar" rendered="true" id="loginButton" update=":form"
+                                             actionListener="#{noticiaController.loadNews}"/>
+
+                        </h:panelGrid>
+
+
+                    </p:outputPanel>
+
+                </p:dialog>
+                <br />
+                <h:commandLink action="#{noticiaController.prepareCreate}" value="#{bundle.ListNoticiaCreateLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ListNoticiaIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
